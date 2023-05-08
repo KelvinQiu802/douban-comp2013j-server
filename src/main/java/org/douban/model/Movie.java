@@ -1,4 +1,4 @@
 package org.douban.model;
 
-public class Main {
+public class Movie {
 }

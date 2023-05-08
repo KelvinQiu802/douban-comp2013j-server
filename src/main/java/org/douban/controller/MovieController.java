@@ -1,4 +1,4 @@
 package org.douban.controller;
 
-public class Main {
+public class MovieController {
 }

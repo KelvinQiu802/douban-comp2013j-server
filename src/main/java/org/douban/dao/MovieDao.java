@@ -37,6 +37,7 @@ public class MovieDao {
                 rs.getString("starring"), rs.getString("language"),
                 rs.getString("directedBy"), rs.getString("runtime"),
                 rs.getString("release_date"), rs.getString("genre"),
-                rs.getString("img_url"), rs.getString("abstract"));
+                rs.getString("img_url"), rs.getString("abstract"),
+                rs.getDouble("score"));
     }
 }

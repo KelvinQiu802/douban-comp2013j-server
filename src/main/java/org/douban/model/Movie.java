@@ -13,10 +13,12 @@ public class Movie {
     private String genre;
     private String imgUrl;
     private String abstractInfo;
+    private double score;
 
     public Movie(int movieId, String country, String intro, String movieTitle,
                  String starring, String language, String director, String runtime,
-                 String releaseDate, String genre, String imgUrl, String abstractInfo) {
+                 String releaseDate, String genre, String imgUrl, String abstractInfo,
+                 double score) {
         this.movieId = movieId;
         this.country = country;
         this.intro = intro;
@@ -29,6 +31,7 @@ public class Movie {
         this.genre = genre;
         this.imgUrl = imgUrl;
         this.abstractInfo = abstractInfo;
+        this.score = score;
     }
 
     public int getMovieId() {
@@ -77,5 +80,9 @@ public class Movie {
 
     public String getAbstractInfo() {
         return abstractInfo;
+    }
+
+    public double getScore() {
+        return score;
     }
 }

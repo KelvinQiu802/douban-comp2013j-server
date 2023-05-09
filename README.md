@@ -27,6 +27,14 @@ erDiagram
 		Movies {
 			int movie_id PK
 			double score
+			string country
+			string intro
+			string movie_title
+			string starring
+			string language
+			string director
+			string runtime
+			string release_date
 		}
 		
 		Users {

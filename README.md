@@ -1,5 +1,9 @@
 # COMP2013J Douban Project Server
 
+<p align="center">
+  <img src="https://imgbed.codingkelvin.fun/uPic/film.png" alt="Douban Movie Icon" style="height:150px;" />
+</p>
+
 ## Configure Commit Lint Hook
 
 ```shell

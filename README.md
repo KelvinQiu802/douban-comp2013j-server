@@ -27,6 +27,7 @@ erDiagram
 		Bookmarks }o--|| Movies : save
 		Users ||--o{ Stars : star
 		Movies ||--o{ Stars : has
+		Users ||--o{ CommentLikes : create
 
 		Movies {
 			int movie_id PK

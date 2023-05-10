@@ -73,3 +73,9 @@ erDiagram
 		}
 ```
 
+## API Documentation
+
+| HTTP Verbs | Endpoints                     | Action                             | Response Format |
+| ---------- | ----------------------------- | ---------------------------------- | --------------- |
+| GET        | /api/test                     | To get top 10 movies in the db.    | JSON            |
+

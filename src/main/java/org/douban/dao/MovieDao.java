@@ -3,10 +3,7 @@ package org.douban.dao;
 import org.douban.model.Movie;
 import org.douban.util.DBUtils;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +20,19 @@ public class MovieDao {
             }
         }
         return result;
+    }
+
+    public Movie getMovieById(int id) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM movies WHERE movie_id = ?;");
+        ) {
+            st.setInt(1, id);
+            try (ResultSet rs = st.executeQuery()) {
+                rs.next();
+                return constructMovie(rs);
+            }
+        }
     }
 
     /***

@@ -11,9 +11,9 @@ public class MovieDao {
     public List<Movie> getTopTenMovies() throws SQLException {
         List<Movie> result = new ArrayList<>();
         try (
-            Connection conn = DBUtils.connectToDB();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM movies LIMIT 10;");
+                Connection conn = DBUtils.connectToDB();
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM movies LIMIT 10;");
         ) {
             while (rs.next()) {
                 result.add(constructMovie(rs));
@@ -24,8 +24,8 @@ public class MovieDao {
 
     public Movie getMovieById(int id) throws SQLException {
         try (
-            Connection conn = DBUtils.connectToDB();
-            PreparedStatement st = conn.prepareStatement("SELECT * FROM movies WHERE movie_id = ?;");
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM movies WHERE movie_id = ?;");
         ) {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
@@ -37,15 +37,13 @@ public class MovieDao {
 
     public Movie updateMovieScoreById(int id, double score) throws SQLException {
         try (
-            Connection conn = DBUtils.connectToDB();
-            PreparedStatement st = conn.prepareStatement("UPDATE movies SET score = ? WHERE movie_id = ?;");
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("UPDATE movies SET score = ? WHERE movie_id = ?;");
         ) {
             st.setDouble(1, score);
             st.setInt(2, id);
-            try (ResultSet rs = st.executeQuery()) {
-                rs.next();
-                return constructMovie(rs);
-            }
+            st.executeUpdate();
+            return getMovieById(id);
         }
     }
 
@@ -57,11 +55,11 @@ public class MovieDao {
      */
     private Movie constructMovie(ResultSet rs) throws SQLException {
         return new Movie(rs.getInt("movie_id"), rs.getString("country"),
-            rs.getString("intro"), rs.getString("movie_title"),
-            rs.getString("starring"), rs.getString("language"),
-            rs.getString("directedBy"), rs.getString("runtime"),
-            rs.getString("release_date"), rs.getString("genre"),
-            rs.getString("img_url"), rs.getString("abstract"),
-            rs.getDouble("score"));
+                rs.getString("intro"), rs.getString("movie_title"),
+                rs.getString("starring"), rs.getString("language"),
+                rs.getString("directedBy"), rs.getString("runtime"),
+                rs.getString("release_date"), rs.getString("genre"),
+                rs.getString("img_url"), rs.getString("abstract"),
+                rs.getDouble("score"));
     }
 }

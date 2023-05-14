@@ -32,7 +32,7 @@ public class MovieController {
         }
     }
 
-    public void movieUpdateScore(Context ctx) {
+    public void updateMovieScore(Context ctx) {
         try {
             String idStr = ctx.pathParam("id");
             int id = Integer.parseInt(idStr);

@@ -1,6 +1,7 @@
 package org.douban.dao;
 
 import org.douban.model.Movie;
+import org.douban.model.MovieCount;
 import org.douban.util.DBUtils;
 
 import java.sql.*;
@@ -35,6 +36,23 @@ public class MovieDao {
         }
     }
 
+    public List<Movie> getMoviesByPage(int page, int limit) throws SQLException {
+        List<Movie> movies = new ArrayList<>();
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM movies LIMIT ?, ?;");
+        ) {
+            st.setInt(1, (page - 1) * limit);
+            st.setInt(2, limit);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    movies.add(constructMovie(rs));
+                }
+            }
+        }
+        return movies;
+    }
+
     public Movie updateMovieScoreById(int id, double score) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
@@ -46,6 +64,18 @@ public class MovieDao {
             return getMovieById(id);
         }
     }
+
+    public MovieCount getMovieCount() throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM movies;");
+        ) {
+            rs.next();
+            return new MovieCount(rs.getInt(1));
+        }
+    }
+
 
     /***
      * A helper method to create movie object.

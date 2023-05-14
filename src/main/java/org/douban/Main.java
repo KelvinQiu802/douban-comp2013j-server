@@ -18,6 +18,8 @@ public class Main {
 
         app.get("/api/test", movieController::topTenMovies);
 
+        app.get("/api/movies", movieController::movieByPage);
+
         app.get("/api/movies/{id}", movieController::movieById);
 
         app.put("/api/movies/{id}/{score}", movieController::updateMovieScore);

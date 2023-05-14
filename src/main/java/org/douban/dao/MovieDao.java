@@ -35,6 +35,23 @@ public class MovieDao {
         }
     }
 
+    public List<Movie> getMoviesByPage(int page, int limit) throws SQLException {
+        List<Movie> movies = new ArrayList<>();
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM movies LIMIT ?, ?;");
+        ) {
+            st.setInt(1, (page - 1) * limit);
+            st.setInt(2, limit);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    movies.add(constructMovie(rs));
+                }
+            }
+        }
+        return movies;
+    }
+
     public Movie updateMovieScoreById(int id, double score) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();

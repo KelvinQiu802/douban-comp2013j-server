@@ -76,9 +76,10 @@ erDiagram
 
 ## API Documentation
 
-| HTTP Verbs | Endpoints                | Action                            | Response Format |
-| ---------- | ------------------------ | --------------------------------- | --------------- |
-| GET        | /api/test                | To get top 10 movies in the db    | JSON            |
-| GET        | /api/movies/{id}         | To retrieve movie by id in the db | JSON            |
-| PUT        | /api/movies/{id}/{score} | To update movie score in the db   | JSON            |
+| HTTP Verbs | Endpoints                             | Action                            | Response Format |
+| ---------- | ------------------------------------- | --------------------------------- | --------------- |
+| GET        | /api/test                             | To get top 10 movies in the db    | JSON            |
+| GET        | /api/movies/{id}                      | To retrieve movie by id in the db | JSON            |
+| PUT        | /api/movies/{id}/{score}              | To update movie score in the db   | JSON            |
+| GET        | /api/movies?page={page}&limit={limit} | To get movies by page and limit   | JSON            |
 

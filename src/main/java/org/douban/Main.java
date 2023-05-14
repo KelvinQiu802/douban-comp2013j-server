@@ -20,6 +20,8 @@ public class Main {
 
         app.get("/api/movies/{id}", movieController::movieById);
 
+        app.get("/api/movies/{id}/{score}", movieController::updateMovieScore);
+
         app.start(7070);
     }
 }

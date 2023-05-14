@@ -35,6 +35,18 @@ public class MovieDao {
         }
     }
 
+    public Movie updateMovieScoreById(int id, double score) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("UPDATE movies SET score = ? WHERE movie_id = ?;");
+        ) {
+            st.setDouble(1, score);
+            st.setInt(2, id);
+            st.executeUpdate();
+            return getMovieById(id);
+        }
+    }
+
     /***
      * A helper method to create movie object.
      * @param rs Result Set

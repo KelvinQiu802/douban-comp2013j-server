@@ -1,6 +1,7 @@
 package org.douban.dao;
 
 import org.douban.model.Movie;
+import org.douban.model.MovieCount;
 import org.douban.util.DBUtils;
 
 import java.sql.*;
@@ -63,6 +64,18 @@ public class MovieDao {
             return getMovieById(id);
         }
     }
+
+    public MovieCount getMovieCount() throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM movies;");
+        ) {
+            rs.next();
+            return new MovieCount(rs.getInt(1));
+        }
+    }
+
 
     /***
      * A helper method to create movie object.

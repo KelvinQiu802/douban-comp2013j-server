@@ -48,6 +48,14 @@ public class MovieController {
         }
     }
 
+    public void movieCount(Context ctx) {
+        try {
+            ctx.json(movieDao.getMovieCount());
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        }
+    }
+
     public void updateMovieScore(Context ctx) {
         try {
             String idStr = ctx.pathParam("id");

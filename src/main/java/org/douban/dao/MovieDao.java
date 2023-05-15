@@ -78,19 +78,16 @@ public class MovieDao {
     }
 
 
-    public User createUser(User user) throws SQLException{
-        try(
-                Connection conn=DBUtils.connectToDB();
-                PreparedStatement st=conn.prepareStatement("INSERT INTO users(user_name,password) VALUES (?,?);");
-                ){
+    public User createUser(User user) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("INSERT INTO users(user_name,password) VALUES (?, ?);");
+        ) {
             st.setString(1, user.getUserName());
             st.setString(2, user.getPassword());
             st.executeUpdate();
             return user;
-        }catch (SQLException e){
-            e.printStackTrace();
         }
-        return null;
     }
 
     /***

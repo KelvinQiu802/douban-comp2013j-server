@@ -70,14 +70,14 @@ public class MovieController {
             ctx.result("Invalid Input Number").status(400);
         }
     }
-    public void createUser(Context ctx){
+
+    public void createUser(Context ctx) {
         try {
-            User user=ctx.bodyAsClass(User.class);
-            User created=movieDao.createUser(user);
+            User user = ctx.bodyAsClass(User.class);
+            User created = movieDao.createUser(user);
             ctx.json(created);
         } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
         }
-
     }
 }

@@ -31,7 +31,11 @@ public class UserDao {
             try (
                     ResultSet rs = st.executeQuery();
             ) {
-                rs.next();
+                if (rs.getFetchSize() != 0) {
+                    rs.next();
+                } else {
+                    return null;
+                }
                 String userName = rs.getString("user_name");
                 String password = rs.getString("password");
                 if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {

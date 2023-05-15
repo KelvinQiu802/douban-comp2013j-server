@@ -13,23 +13,27 @@ public class UserController {
         userDao = new UserDao();
     }
 
-    public void createUser(Context ctx) {
+    public void signupUser(Context ctx) {
         try {
             User user = ctx.bodyAsClass(User.class);
-            User created = userDao.createUser(user);
+            User created = userDao.createUserRecord(user);
             ctx.json(created);
         } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
         }
     }
 
-    public void userLogin(Context ctx){
+    public void loginUser(Context ctx) {
         try {
-            User user=ctx.bodyAsClass(User.class);
-            User loginUser=userDao.userLogin(user);
-            ctx.json(loginUser);
-        }catch (SQLException e){
-            ctx.result("User name or password is wrong").status(401);
+            User user = ctx.bodyAsClass(User.class);
+            User logined = userDao.loginUser(user);
+            if (logined != null) {
+                ctx.json(logined);
+            } else {
+                ctx.result("User name or password is wrong").status(401);
+            }
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
         }
     }
 }

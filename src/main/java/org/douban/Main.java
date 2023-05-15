@@ -4,7 +4,6 @@ import io.javalin.Javalin;
 import io.javalin.plugin.bundled.CorsPluginConfig;
 import org.douban.controller.MovieController;
 import org.douban.controller.UserController;
-import org.douban.dao.UserDao;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,9 +28,9 @@ public class Main {
 
         app.put("/api/movies/{id}/{score}", movieController::updateMovieScore);
 
-        app.post("/api/users", userController::createUser);
+        app.post("/api/users", userController::signupUser);
 
-        app.post("/api/users/login", userController::userLogin);
+        app.post("/api/users/login", userController::loginUser);
 
         app.start(7070);
     }

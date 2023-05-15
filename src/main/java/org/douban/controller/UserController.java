@@ -22,4 +22,14 @@ public class UserController {
             ctx.result("Internal Server Error").status(500);
         }
     }
+
+    public void userLogin(Context ctx){
+        try {
+            User user=ctx.bodyAsClass(User.class);
+            User loginUser=userDao.userLogin(user);
+            ctx.json(loginUser);
+        }catch (SQLException e){
+            ctx.result("User name or password is wrong").status(401);
+        }
+    }
 }

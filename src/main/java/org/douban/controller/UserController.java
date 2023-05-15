@@ -13,6 +13,14 @@ public class UserController {
         userDao = new UserDao();
     }
 
+    public void allUsers(Context ctx) {
+        try {
+            ctx.json(userDao.getAllUserNames());
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        }
+    }
+
     public void signupUser(Context ctx) {
         try {
             User user = ctx.bodyAsClass(User.class);

@@ -32,6 +32,8 @@ public class Main {
 
         app.post("/api/users/login", userController::loginUser);
 
+        app.get("/api/users", userController::allUsers);
+
         app.start(7070);
     }
 }

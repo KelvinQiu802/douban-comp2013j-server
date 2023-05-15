@@ -25,6 +25,7 @@ public class Main {
         app.get("/api/movies/{id}", movieController::movieById);
 
         app.put("/api/movies/{id}/{score}", movieController::updateMovieScore);
+        app.post("/api/users",movieController::createUser);
 
         app.start(7070);
     }

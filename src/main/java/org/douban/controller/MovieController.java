@@ -2,6 +2,7 @@ package org.douban.controller;
 
 import io.javalin.http.Context;
 import org.douban.dao.MovieDao;
+import org.douban.model.User;
 import org.douban.util.ParamUtil;
 
 import java.sql.SQLException;
@@ -68,5 +69,15 @@ public class MovieController {
         } catch (NumberFormatException e) {
             ctx.result("Invalid Input Number").status(400);
         }
+    }
+    public void createUser(Context ctx){
+        try {
+            User user=ctx.bodyAsClass(User.class);
+            User created=movieDao.createUser(user);
+            ctx.json(created);
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        }
+
     }
 }

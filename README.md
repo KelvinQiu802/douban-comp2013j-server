@@ -83,4 +83,6 @@ erDiagram
 | PUT        | /api/movies/{id}/{score}              | To update movie score in the db         | JSON            |
 | GET        | /api/movies?page={page}&limit={limit} | To get movies by page and limit         | JSON            |
 | GET        | /api/movies/count                     | To get total number of movies in the db | JSON            |
+| POST       | /api/users                            | Create an user in the db                | JSON            |
+| POST       | /api/users/login                      | Login Authentication                    | JSON            |
 

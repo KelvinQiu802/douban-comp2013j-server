@@ -24,25 +24,21 @@ public class UserDao {
     public User loginUser(User user) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
-                PreparedStatement st = conn.prepareStatement("SELECT user_name, password FROM users WHERE user_name " +
-                        "= ?;");
+                PreparedStatement st = conn.prepareStatement("SELECT COUNT(*) FROM users WHERE user_name " +
+                        "= ? && password = ?;");
         ) {
             st.setString(1, user.getUserName());
+            st.setString(2, user.getPassword());
             try (
                     ResultSet rs = st.executeQuery();
             ) {
-                if (rs.getFetchSize() != 0) {
-                    rs.next();
-                } else {
+                rs.next();
+                int count = rs.getInt(1);
+                if (count == 0) {
                     return null;
                 }
-                String userName = rs.getString("user_name");
-                String password = rs.getString("password");
-                if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-                    return user;
-                }
+                return user;
             }
         }
-        return null;
     }
 }

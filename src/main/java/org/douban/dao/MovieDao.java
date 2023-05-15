@@ -2,7 +2,6 @@ package org.douban.dao;
 
 import org.douban.model.Movie;
 import org.douban.model.MovieCount;
-import org.douban.model.User;
 import org.douban.util.DBUtils;
 
 import java.sql.*;
@@ -74,19 +73,6 @@ public class MovieDao {
         ) {
             rs.next();
             return new MovieCount(rs.getInt(1));
-        }
-    }
-
-
-    public User createUser(User user) throws SQLException {
-        try (
-                Connection conn = DBUtils.connectToDB();
-                PreparedStatement st = conn.prepareStatement("INSERT INTO users(user_name,password) VALUES (?, ?);");
-        ) {
-            st.setString(1, user.getUserName());
-            st.setString(2, user.getPassword());
-            st.executeUpdate();
-            return user;
         }
     }
 

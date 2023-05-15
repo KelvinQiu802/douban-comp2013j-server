@@ -3,6 +3,7 @@ package org.douban;
 import io.javalin.Javalin;
 import io.javalin.plugin.bundled.CorsPluginConfig;
 import org.douban.controller.MovieController;
+import org.douban.controller.UserController;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,6 +16,7 @@ public class Main {
         );
 
         MovieController movieController = new MovieController();
+        UserController userController = new UserController();
 
         app.get("/api/test", movieController::topTenMovies);
 
@@ -25,6 +27,12 @@ public class Main {
         app.get("/api/movies/{id}", movieController::movieById);
 
         app.put("/api/movies/{id}/{score}", movieController::updateMovieScore);
+
+        app.post("/api/users", userController::signupUser);
+
+        app.post("/api/users/login", userController::loginUser);
+
+        app.get("/api/users", userController::allUsers);
 
         app.start(7070);
     }

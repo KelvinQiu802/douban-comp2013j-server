@@ -76,7 +76,6 @@ public class MovieDao {
         }
     }
 
-
     /***
      * A helper method to create movie object.
      * @param rs Result Set

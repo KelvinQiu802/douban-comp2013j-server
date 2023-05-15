@@ -69,4 +69,5 @@ public class MovieController {
             ctx.result("Invalid Input Number").status(400);
         }
     }
+
 }

@@ -85,4 +85,5 @@ erDiagram
 | GET        | /api/movies/count                     | To get total number of movies in the db | JSON            |
 | POST       | /api/users                            | Create an user in the db                | JSON            |
 | POST       | /api/users/login                      | Login Authentication                    | JSON            |
+| GET        | /api/users                            | To get all user names in the db         | JSON            |
 

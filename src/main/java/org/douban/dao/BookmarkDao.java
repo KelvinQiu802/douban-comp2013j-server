@@ -8,16 +8,29 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class BookmarkDao {
-    public Bookmark createBookMark(Bookmark bookMark) throws SQLException {
+    public Bookmark createBookmark(Bookmark bookmark) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
                 PreparedStatement st = conn.prepareStatement("INSERT INTO bookmarks(user_name, movie_id, status) VALUES (?, ?, ?);");
         ) {
-            st.setString(1, bookMark.getUserName());
-            st.setInt(2, bookMark.getMovieId());
-            st.setString(3, String.valueOf(bookMark.getStatus()));
+            st.setString(1, bookmark.getUserName());
+            st.setInt(2, bookmark.getMovieId());
+            st.setString(3, String.valueOf(bookmark.getStatus()));
             st.executeUpdate();
-            return bookMark;
+            return bookmark;
+        }
+    }
+
+    public Bookmark updateBookmark(Bookmark bookmark) throws SQLException{
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("UPDATE bookmarks SET status = ? where user_name = ? AND movie_id = ?;");
+        ) {
+            st.setString(1, String.valueOf(bookmark.getStatus()));
+            st.setString(2, bookmark.getUserName());
+            st.setInt(3, bookmark.getMovieId());
+            st.executeUpdate();
+            return bookmark;
         }
     }
 }

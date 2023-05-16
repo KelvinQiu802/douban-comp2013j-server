@@ -27,8 +27,11 @@ public class BookmarkDao {
                 PreparedStatement st = conn.prepareStatement("UPDATE bookmarks SET status = ? where user_name = ? AND movie_id = ?;");
         ) {
             st.setString(1, String.valueOf(bookmark.getStatus()));
+            System.out.println(String.valueOf(bookmark.getStatus()));
             st.setString(2, bookmark.getUserName());
+            System.out.println(bookmark.getUserName());
             st.setInt(3, bookmark.getMovieId());
+            System.out.println(bookmark.getMovieId());
             st.executeUpdate();
             return bookmark;
         }

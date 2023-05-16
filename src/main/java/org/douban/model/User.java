@@ -3,8 +3,6 @@ package org.douban.model;
 public class User {
     private String userName;
 
-
-
     private String password;
 
     public User(String userName, String password) {

@@ -44,10 +44,24 @@ public class BookmarkController {
         }
     }
 
-    public void getBookmark(Context ctx){
+    public void getBookmarks(Context ctx){
         try {
             String userName=ctx.pathParam("userName");
-            ctx.json(bookmarkDao.getBookmark(userName));
+            ctx.json(bookmarkDao.getBookmarks(userName));
+        }catch (SQLException e){
+            ctx.result("Internal Server Error").status(500);
+        }catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
+        }
+    }
+
+    public void deleteBookmark(Context ctx){
+        try {
+            String userStr = ctx.pathParam("userName");
+            String movieIdStr = ctx.pathParam("movieId");
+            int movieId = Integer.parseInt(movieIdStr);
+            Bookmark bookmark = new Bookmark(userStr, movieId,BookmarkDao.getBookmarkStatus(userStr,movieId));
+            ctx.json(bookmarkDao.deleteBookmark(bookmark));
         }catch (SQLException e){
             ctx.result("Internal Server Error").status(500);
         }catch (NumberFormatException e) {

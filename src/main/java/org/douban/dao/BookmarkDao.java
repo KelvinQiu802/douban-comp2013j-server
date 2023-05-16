@@ -27,6 +27,18 @@ public class BookmarkDao {
         }
     }
 
+    public Bookmark deleteBookmark(Bookmark bookmark) throws SQLException{
+        try(
+                Connection conn =DBUtils.connectToDB();
+                PreparedStatement st =conn.prepareStatement("DELETE FROM bookmarks WHERE user_name=? AND movie_id=?;");
+                ){
+            st.setString(1,bookmark.getUserName());
+            st.setInt(2,bookmark.getMovieId());
+            st.executeUpdate();
+            return bookmark;
+        }
+    }
+
     public Bookmark updateBookmark(Bookmark bookmark) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
@@ -40,7 +52,7 @@ public class BookmarkDao {
         }
     }
 
-    public List<Bookmark> getBookmark(String userName) throws SQLException{
+    public List<Bookmark> getBookmarks(String userName) throws SQLException{
         List<Bookmark> bookmarks=new ArrayList<>();
         try (
                 Connection conn=DBUtils.connectToDB();
@@ -55,6 +67,20 @@ public class BookmarkDao {
         }
         return bookmarks;
     }
+
+    public static BookmarkStatus getBookmarkStatus(String userName, int movieId) throws SQLException{
+        try (
+                Connection conn=DBUtils.connectToDB();
+                PreparedStatement st=conn.prepareStatement("SELECT status FROM bookmarks where user_name=? AND movie_id = ? ;");
+        ){
+            st.setString(1,userName);
+            st.setInt(2,movieId);
+            ResultSet rs=st.executeQuery();
+            rs.next();
+            return BookmarkStatus.valueOf(rs.getString("status"));
+        }
+    }
+
 
     private Bookmark constructBookmark(ResultSet rs) throws SQLException {
         return new Bookmark(rs.getString("user_name"),rs.getInt("movie_id"),BookmarkStatus.valueOf(rs.getString("status")));

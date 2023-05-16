@@ -1,5 +1,5 @@
 package org.douban.model;
 
-public enum BookMarkStatus {
+public enum BookmarkStatus {
     Wanna, Watched;
 }

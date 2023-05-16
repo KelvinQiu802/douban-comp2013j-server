@@ -1,11 +1,17 @@
 package org.douban.dao;
 
 import org.douban.model.Bookmark;
+import org.douban.model.BookmarkStatus;
+import org.douban.model.Movie;
+import org.douban.model.User;
 import org.douban.util.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookmarkDao {
     public Bookmark createBookmark(Bookmark bookmark) throws SQLException {
@@ -32,5 +38,25 @@ public class BookmarkDao {
             st.executeUpdate();
             return bookmark;
         }
+    }
+
+    public List<Bookmark> getBookmark(String userName) throws SQLException{
+        List<Bookmark> bookmarks=new ArrayList<>();
+        try (
+                Connection conn=DBUtils.connectToDB();
+                PreparedStatement st=conn.prepareStatement("SELECT * FROM bookmarks where user_name=? ;");
+                ){
+            st.setString(1,userName);
+            try (ResultSet rs=st.executeQuery()){
+                while(rs.next()){
+                    bookmarks.add(constructBookmark(rs));
+                }
+            }
+        }
+        return bookmarks;
+    }
+
+    private Bookmark constructBookmark(ResultSet rs) throws SQLException {
+        return new Bookmark(rs.getString("user_name"),rs.getInt("movie_id"),BookmarkStatus.valueOf(rs.getString("status")));
     }
 }

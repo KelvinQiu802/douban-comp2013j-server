@@ -40,6 +40,8 @@ public class Main {
 
         app.put("/api/bookmarks/{userName}/{movieId}/{status}", bookMarkController::updateBookmark);
 
+        app.get("/api/bookmarks/{userName}",bookMarkController::getBookmark);
+
         app.start(7070);
     }
 }

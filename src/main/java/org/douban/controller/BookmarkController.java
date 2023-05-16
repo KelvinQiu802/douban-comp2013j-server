@@ -43,4 +43,15 @@ public class BookmarkController {
             ctx.result("Invalid Input").status(400);
         }
     }
+
+    public void getBookmark(Context ctx){
+        try {
+            String userName=ctx.pathParam("userName");
+            ctx.json(bookmarkDao.getBookmark(userName));
+        }catch (SQLException e){
+            ctx.result("Internal Server Error").status(500);
+        }catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
+        }
+    }
 }

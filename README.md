@@ -31,7 +31,6 @@ erDiagram
 
 		Movies {
 			int movie_id PK
-			double score
 			string country
 			string intro
 			string movie_title

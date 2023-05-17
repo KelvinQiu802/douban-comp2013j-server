@@ -65,6 +65,8 @@ public class Main {
 
         app.get("/api/commentvotes/{commentId}", commentVoteController::getVotes);
 
+        app.delete("/api/commentvotes/{commentId}", commentVoteController::deleteVote);
+
         app.start(7070);
     }
 }

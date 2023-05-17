@@ -56,4 +56,14 @@ public class CommentVoteDao {
             }
         }
     }
+
+    public void deleteVote(int id) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("DELETE FROM commentvotes WHERE comment_id = ?;");
+        ) {
+            st.setInt(1, id);
+            st.executeUpdate();
+        }
+    }
 }

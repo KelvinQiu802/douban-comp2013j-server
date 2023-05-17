@@ -55,4 +55,17 @@ public class CommentVoteController {
             ctx.result("Invalid Input").status(400);
         }
     }
+
+    public void deleteVote(Context ctx) {
+        try {
+            String commentIdStr = ctx.pathParam("commentId");
+            int commentId = Integer.parseInt(commentIdStr);
+            commentVoteDao.deleteVote(commentId);
+            ctx.result("Success").status(200);
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
+        }
+    }
 }

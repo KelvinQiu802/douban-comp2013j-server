@@ -4,6 +4,7 @@ import io.javalin.Javalin;
 import io.javalin.plugin.bundled.CorsPluginConfig;
 import org.douban.controller.BookmarkController;
 import org.douban.controller.MovieController;
+import org.douban.controller.ScoreController;
 import org.douban.controller.UserController;
 
 public class Main {
@@ -19,6 +20,7 @@ public class Main {
         MovieController movieController = new MovieController();
         UserController userController = new UserController();
         BookmarkController bookmarkController = new BookmarkController();
+        ScoreController scoreController = new ScoreController();
 
         app.get("/api/test", movieController::topTenMovies);
 
@@ -43,6 +45,12 @@ public class Main {
         app.get("/api/bookmarks/{userName}", bookmarkController::getBookmarksByUsername);
 
         app.delete("/api/bookmarks/{userName}/{movieId}", bookmarkController::deleteBookmark);
+
+        app.post("/api/scores/{userName}/{movieId}/{score}", scoreController::createScore);
+
+        app.put("/api/scores/{userName}/{movieId}/{score}", scoreController::updateScore);
+
+        app.get("/api/scores/{movieId}", scoreController::scoresOfMovie);
 
         app.start(7070);
     }

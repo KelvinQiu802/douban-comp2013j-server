@@ -45,12 +45,14 @@ public class UserDao {
             try (
                     ResultSet rs = st.executeQuery();
             ) {
-                rs.next();
-                int count = rs.getInt(1);
-                if (count == 0) {
-                    return null;
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    if (count == 0) {
+                        return null;
+                    }
+                    return user;
                 }
-                return user;
+                return null;
             }
         }
     }

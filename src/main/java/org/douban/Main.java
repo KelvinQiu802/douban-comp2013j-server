@@ -40,9 +40,9 @@ public class Main {
 
         app.put("/api/bookmarks/{userName}/{movieId}/{status}", bookmarkController::updateBookmark);
 
-        app.get("/api/bookmarks/{userName}",bookmarkController::getBookmarks);
+        app.get("/api/bookmarks/{userName}", bookmarkController::getBookmarksByUsername);
 
-        app.delete("/api/bookmarks/{userName}/{movieId}",bookmarkController::deleteBookmark);
+        app.delete("/api/bookmarks/{userName}/{movieId}", bookmarkController::deleteBookmark);
 
         app.start(7070);
     }

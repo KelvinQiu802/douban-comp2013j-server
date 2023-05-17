@@ -44,27 +44,25 @@ public class BookmarkController {
         }
     }
 
-    public void getBookmarks(Context ctx){
+    public void getBookmarksByUsername(Context ctx) {
         try {
-            String userName=ctx.pathParam("userName");
-            ctx.json(bookmarkDao.getBookmarks(userName));
-        }catch (SQLException e){
+            String userName = ctx.pathParam("userName");
+            ctx.json(bookmarkDao.getBookmarksByUsername(userName));
+        } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
-        }catch (NumberFormatException e) {
-            ctx.result("Invalid Input").status(400);
         }
     }
 
-    public void deleteBookmark(Context ctx){
+    public void deleteBookmark(Context ctx) {
         try {
-            String userStr = ctx.pathParam("userName");
+            String userName = ctx.pathParam("userName");
             String movieIdStr = ctx.pathParam("movieId");
             int movieId = Integer.parseInt(movieIdStr);
-            Bookmark bookmark = new Bookmark(userStr, movieId,BookmarkDao.getBookmarkStatus(userStr,movieId));
+            Bookmark bookmark = bookmarkDao.getBookmark(userName, movieId);
             ctx.json(bookmarkDao.deleteBookmark(bookmark));
-        }catch (SQLException e){
+        } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             ctx.result("Invalid Input").status(400);
         }
     }

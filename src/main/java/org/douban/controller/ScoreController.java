@@ -13,6 +13,18 @@ public class ScoreController {
         scoreDao = new ScoreDao();
     }
 
+    public void scoresOfMovie(Context ctx) {
+        try {
+            String idStr = ctx.pathParam("movieId");
+            int id = Integer.parseInt(idStr);
+            ctx.json(scoreDao.getScoresByMovie(id));
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
+        }
+    }
+
     public void createScore(Context ctx) {
         try {
             String userName = ctx.pathParam("userName");

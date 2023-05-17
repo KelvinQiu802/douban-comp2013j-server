@@ -50,6 +50,8 @@ public class Main {
 
         app.put("/api/scores/{userName}/{movieId}/{score}", scoreController::updateScore);
 
+        app.get("/api/scores/{movieId}", scoreController::scoresOfMovie);
+
         app.start(7070);
     }
 }

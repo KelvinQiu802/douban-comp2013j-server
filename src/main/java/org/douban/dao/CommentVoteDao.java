@@ -21,4 +21,18 @@ public class CommentVoteDao {
             return vote;
         }
     }
+
+    public CommentVote updateVote(CommentVote vote) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("UPDATE commentvotes SET status = ? WHERE " +
+                        "user_name = ? AND comment_id = ?;");
+        ) {
+            st.setString(1, vote.getStatus().toString());
+            st.setString(2, vote.getUserName());
+            st.setInt(3, vote.getCommentId());
+            st.executeUpdate();
+            return vote;
+        }
+    }
 }

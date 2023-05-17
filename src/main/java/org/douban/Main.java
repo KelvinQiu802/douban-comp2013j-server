@@ -61,6 +61,8 @@ public class Main {
 
         app.post("/api/commentvotes/{userName}/{commentId}/{status}", commentVoteController::createVote);
 
+        app.put("/api/commentvotes/{userName}/{commentId}/{status}", commentVoteController::updateVote);
+
         app.start(7070);
     }
 }

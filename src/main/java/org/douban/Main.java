@@ -50,6 +50,8 @@ public class Main {
 
         app.get("/api/scores/{movieId}", scoreController::scoresOfMovie);
 
+        app.delete("/api/scores/{userName}/{movieId}", scoreController::deleteScore);
+
         app.start(7070);
     }
 }

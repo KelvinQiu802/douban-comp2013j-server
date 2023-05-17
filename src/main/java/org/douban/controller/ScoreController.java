@@ -52,4 +52,17 @@ public class ScoreController {
             ctx.result("Invalid Input").status(400);
         }
     }
+
+    public void deleteScore(Context ctx) {
+        try {
+            String userName = ctx.pathParam("userName");
+            String idStr = ctx.pathParam("movieId");
+            Score score = new Score(userName, Integer.parseInt(idStr), 0);
+            ctx.json(scoreDao.deleteScoreRecord(score));
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
+        }
+    }
 }

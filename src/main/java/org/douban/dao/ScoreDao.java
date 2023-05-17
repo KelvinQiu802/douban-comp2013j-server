@@ -57,6 +57,19 @@ public class ScoreDao {
         }
     }
 
+    public Score deleteScoreRecord(Score score) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("DELETE FROM scores WHERE user_name = ? AND movie_id = " +
+                        "?;");
+        ) {
+            st.setString(1, score.getUserName());
+            st.setInt(2, score.getMovieId());
+            st.executeUpdate();
+            return score;
+        }
+    }
+
     private Score constructScore(ResultSet rs) throws SQLException {
         return new Score(rs.getString("user_name"), rs.getInt("movie_id"), rs.getInt("score"));
     }

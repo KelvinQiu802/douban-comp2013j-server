@@ -52,11 +52,12 @@ public class Main {
 
         app.post("/api/comments", commentController::createComment);
 
-        // app.get("/api/comments/{commentId}", CommentController::);
+        app.delete("/api/comments/{commentId}", commentController::deleteComment);
 
-        // app.get("/api/comments/movie/{movieId}", CommentController::);
+        // app.get("/api/comments/{commentId}", commentController::);
 
-        // app.delete("/api/comments/{commentId}", CommentController::);
+        // app.get("/api/comments/movie/{movieId}", commentController::);
+
 
         app.start(7070);
     }

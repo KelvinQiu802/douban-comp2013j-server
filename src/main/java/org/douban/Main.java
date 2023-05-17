@@ -19,6 +19,7 @@ public class Main {
         BookmarkController bookmarkController = new BookmarkController();
         ScoreController scoreController = new ScoreController();
         CommentController commentController = new CommentController();
+        CommentVoteController commentVoteController = new CommentVoteController();
 
         app.get("/api/test", movieController::topTenMovies);
 
@@ -57,6 +58,14 @@ public class Main {
         app.get("/api/comments/{commentId}", commentController::getCommentById);
 
         app.get("/api/comments/movie/{movieId}", commentController::commentByMovieId);
+
+        app.post("/api/commentvotes/{userName}/{commentId}/{status}", commentVoteController::createVote);
+
+        app.put("/api/commentvotes/{userName}/{commentId}/{status}", commentVoteController::updateVote);
+
+        app.get("/api/commentvotes/{commentId}", commentVoteController::getVotes);
+
+        app.delete("/api/commentvotes/{commentId}", commentVoteController::deleteVote);
 
         app.start(7070);
     }

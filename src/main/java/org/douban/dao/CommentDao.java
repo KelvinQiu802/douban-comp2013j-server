@@ -76,7 +76,7 @@ public class CommentDao {
     private Comment constructComment(ResultSet rs) throws SQLException {
         return new Comment(rs.getInt("comment_id"), rs.getString("user_name"),
                 rs.getInt("movie_id"), rs.getString("content"),
-                rs.getDate("time"));
+                rs.getTimestamp("time").toString());
     }
 }
 

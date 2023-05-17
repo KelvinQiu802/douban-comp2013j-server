@@ -1,27 +1,18 @@
 package org.douban.model;
 
-import java.util.Date;
-
 public class Comment {
     private int commentId;
     private String userName;
     private int movieId;
     private String content;
+    private String time;
 
-    private Date date;
-
-    public Comment(int commentId, String userName, int movieId, String content, Date date) {
+    public Comment(int commentId, String userName, int movieId, String content, String time) {
         this.commentId = commentId;
         this.userName = userName;
         this.movieId = movieId;
         this.content = content;
-        this.date = date;
-    }
-
-    public Comment(String userName, int movieId, String content) {
-        this.userName = userName;
-        this.movieId = movieId;
-        this.content = content;
+        this.time = time;
     }
 
 
@@ -42,5 +33,9 @@ public class Comment {
 
     public String getUserName() {
         return userName;
+    }
+
+    public String getTime() {
+        return time;
     }
 }

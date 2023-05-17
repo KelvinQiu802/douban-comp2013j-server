@@ -1,11 +1,15 @@
 package org.douban.dao;
 
 import org.douban.model.CommentVote;
+import org.douban.model.VoteStatus;
 import org.douban.util.DBUtils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommentVoteDao {
     public CommentVote createVote(CommentVote vote) throws SQLException {
@@ -33,6 +37,23 @@ public class CommentVoteDao {
             st.setInt(3, vote.getCommentId());
             st.executeUpdate();
             return vote;
+        }
+    }
+
+    public List<CommentVote> getVotes(int id) throws SQLException {
+        List<CommentVote> votes = new ArrayList<>();
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM commentvotes WHERE comment_id = ?;");
+        ) {
+            st.setInt(1, id);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    votes.add(new CommentVote(rs.getString("user_name"), id,
+                            VoteStatus.valueOf(rs.getString("status"))));
+                }
+                return votes;
+            }
         }
     }
 }

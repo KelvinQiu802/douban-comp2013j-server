@@ -43,4 +43,16 @@ public class CommentVoteController {
             ctx.result("Invalid Input").status(400);
         }
     }
+
+    public void getVotes(Context ctx) {
+        try {
+            String commentIdStr = ctx.pathParam("commentId");
+            int commentId = Integer.parseInt(commentIdStr);
+            ctx.json(commentVoteDao.getVotes(commentId));
+        } catch (SQLException e) {
+            ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
+        }
+    }
 }

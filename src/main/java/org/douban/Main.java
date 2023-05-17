@@ -63,6 +63,8 @@ public class Main {
 
         app.put("/api/commentvotes/{userName}/{commentId}/{status}", commentVoteController::updateVote);
 
+        app.get("/api/commentvotes/{commentId}", commentVoteController::getVotes);
+
         app.start(7070);
     }
 }

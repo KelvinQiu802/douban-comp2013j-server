@@ -2,25 +2,23 @@ package org.douban;
 
 import io.javalin.Javalin;
 import io.javalin.plugin.bundled.CorsPluginConfig;
-import org.douban.controller.BookmarkController;
-import org.douban.controller.MovieController;
-import org.douban.controller.ScoreController;
-import org.douban.controller.UserController;
+import org.douban.controller.*;
 
 public class Main {
     public static void main(String[] args) {
         Javalin app = Javalin.create(
-                config -> {
-                    config.plugins.enableCors(cors -> {
-                        cors.add(CorsPluginConfig::anyHost);
-                    });
-                }
+            config -> {
+                config.plugins.enableCors(cors -> {
+                    cors.add(CorsPluginConfig::anyHost);
+                });
+            }
         );
 
         MovieController movieController = new MovieController();
         UserController userController = new UserController();
         BookmarkController bookmarkController = new BookmarkController();
         ScoreController scoreController = new ScoreController();
+        CommentController commentController = new CommentController();
 
         app.get("/api/test", movieController::topTenMovies);
 
@@ -51,6 +49,14 @@ public class Main {
         app.get("/api/scores/{movieId}", scoreController::scoresOfMovie);
 
         app.delete("/api/scores/{userName}/{movieId}", scoreController::deleteScore);
+
+        app.post("/api/comments", commentController::createComment);
+
+        // app.get("/api/comments/{commentId}", CommentController::);
+
+        // app.get("/api/comments/movie/{movieId}", CommentController::);
+
+        // app.delete("/api/comments/{commentId}", CommentController::);
 
         app.start(7070);
     }

@@ -3,9 +3,9 @@ package org.douban.model;
 public class Score {
     private String userName;
     private int movieId;
-    private int score;
+    private double score;
 
-    public Score(String userName, int movieId, int score) {
+    public Score(String userName, int movieId, double score) {
         this.userName = userName;
         this.movieId = movieId;
         this.score = score;
@@ -19,7 +19,7 @@ public class Score {
         return movieId;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 }

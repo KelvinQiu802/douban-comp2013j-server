@@ -37,7 +37,7 @@ public class ScoreDao {
         ) {
             st.setString(1, score.getUserName());
             st.setInt(2, score.getMovieId());
-            st.setInt(3, score.getScore());
+            st.setDouble(3, score.getScore());
             st.executeUpdate();
             return score;
         }
@@ -49,7 +49,7 @@ public class ScoreDao {
                 PreparedStatement st = conn.prepareStatement("UPDATE scores SET score = ? WHERE user_name = ? AND " +
                         "movie_id = ?;");
         ) {
-            st.setInt(1, score.getScore());
+            st.setDouble(1, score.getScore());
             st.setString(2, score.getUserName());
             st.setInt(3, score.getMovieId());
             st.executeUpdate();
@@ -71,6 +71,6 @@ public class ScoreDao {
     }
 
     private Score constructScore(ResultSet rs) throws SQLException {
-        return new Score(rs.getString("user_name"), rs.getInt("movie_id"), rs.getInt("score"));
+        return new Score(rs.getString("user_name"), rs.getInt("movie_id"), rs.getDouble("score"));
     }
 }

@@ -30,7 +30,7 @@ public class ScoreController {
             String userName = ctx.pathParam("userName");
             String idStr = ctx.pathParam("movieId");
             String scoreStr = ctx.pathParam("score");
-            Score score = new Score(userName, Integer.parseInt(idStr), Integer.parseInt(scoreStr));
+            Score score = new Score(userName, Integer.parseInt(idStr), Double.parseDouble(scoreStr));
             ctx.json(scoreDao.createScoreRecord(score));
         } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
@@ -44,7 +44,7 @@ public class ScoreController {
             String userName = ctx.pathParam("userName");
             String idStr = ctx.pathParam("movieId");
             String scoreStr = ctx.pathParam("score");
-            Score score = new Score(userName, Integer.parseInt(idStr), Integer.parseInt(scoreStr));
+            Score score = new Score(userName, Integer.parseInt(idStr), Double.parseDouble(scoreStr));
             ctx.json(scoreDao.updateScoreRecord(score));
         } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);

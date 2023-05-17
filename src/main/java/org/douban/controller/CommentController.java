@@ -16,7 +16,6 @@ public class CommentController {
             Comment created = commentDao.createComment(comment);
             ctx.json(created);
         } catch (SQLException e) {
-            e.printStackTrace();
             ctx.result("Internal Server Error").status(500);
         }
     }

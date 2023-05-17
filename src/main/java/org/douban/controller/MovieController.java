@@ -55,19 +55,4 @@ public class MovieController {
             ctx.result("Internal Server Error").status(500);
         }
     }
-
-    public void updateMovieScore(Context ctx) {
-        try {
-            String idStr = ctx.pathParam("id");
-            int id = Integer.parseInt(idStr);
-            String scoreStr = ctx.pathParam("score");
-            double score = Double.parseDouble(scoreStr);
-            ctx.json(movieDao.updateMovieScoreById(id, score));
-        } catch (SQLException e) {
-            ctx.result("Internal Server Error").status(500);
-        } catch (NumberFormatException e) {
-            ctx.result("Invalid Input Number").status(400);
-        }
-    }
-
 }

@@ -30,8 +30,6 @@ public class Main {
 
         app.get("/api/movies/{id}", movieController::movieById);
 
-        app.put("/api/movies/{id}/{score}", movieController::updateMovieScore);
-
         app.post("/api/users", userController::signupUser);
 
         app.post("/api/users/login", userController::loginUser);

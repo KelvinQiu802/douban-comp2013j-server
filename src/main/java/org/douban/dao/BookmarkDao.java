@@ -1,9 +1,6 @@
 package org.douban.dao;
 
-import org.douban.model.Bookmark;
-import org.douban.model.BookmarkStatus;
-import org.douban.model.Movie;
-import org.douban.model.User;
+import org.douban.model.*;
 import org.douban.util.DBUtils;
 
 import java.sql.Connection;

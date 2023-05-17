@@ -18,7 +18,7 @@ public class Main {
 
         MovieController movieController = new MovieController();
         UserController userController = new UserController();
-        BookmarkController bookMarkController = new BookmarkController();
+        BookmarkController bookmarkController = new BookmarkController();
 
         app.get("/api/test", movieController::topTenMovies);
 
@@ -36,13 +36,13 @@ public class Main {
 
         app.get("/api/users", userController::allUsers);
 
-        app.post("/api/bookmarks/{userName}/{movieId}/{status}", bookMarkController::createBookmark);
+        app.post("/api/bookmarks/{userName}/{movieId}/{status}", bookmarkController::createBookmark);
 
-        app.put("/api/bookmarks/{userName}/{movieId}/{status}", bookMarkController::updateBookmark);
+        app.put("/api/bookmarks/{userName}/{movieId}/{status}", bookmarkController::updateBookmark);
 
-        app.get("/api/bookmarks/{userName}",bookMarkController::getBookmarks);
+        app.get("/api/bookmarks/{userName}",bookmarkController::getBookmarks);
 
-        app.delete("/api/bookmarks/{userName}/{movieId}",bookMarkController::deleteBookmark);
+        app.delete("/api/bookmarks/{userName}/{movieId}",bookmarkController::deleteBookmark);
 
         app.start(7070);
     }

@@ -64,7 +64,6 @@ erDiagram
 			int movie_id FK
 			string content
 			datetime time
-			int comment_to
 		}
 		
 		CommentLikes {

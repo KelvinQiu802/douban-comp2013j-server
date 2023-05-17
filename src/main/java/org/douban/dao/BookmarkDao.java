@@ -75,8 +75,10 @@ public class BookmarkDao {
             st.setString(1, userName);
             st.setInt(2, movieId);
             ResultSet rs = st.executeQuery();
-            rs.next();
-            return constructBookmark(rs);
+            if (rs.next()) {
+                return constructBookmark(rs);
+            }
+            return null;
         }
     }
 

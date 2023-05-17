@@ -30,8 +30,10 @@ public class MovieDao {
         ) {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
-                rs.next();
-                return constructMovie(rs);
+                if (rs.next()) {
+                    return constructMovie(rs);
+                }
+                return null;
             }
         }
     }
@@ -71,8 +73,10 @@ public class MovieDao {
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM movies;");
         ) {
-            rs.next();
-            return new MovieCount(rs.getInt(1));
+            if (rs.next()) {
+                return new MovieCount(rs.getInt(1));
+            }
+            return null;
         }
     }
 

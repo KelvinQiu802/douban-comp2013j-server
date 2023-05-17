@@ -92,4 +92,8 @@ erDiagram
 | POST       | /api/scores/{userName}/{movieId}/{score}     | Create a score record                    | JSON            |
 | PUT        | /api/scores/{userName}/{movieId}/{score}     | Update a score record                    | JSON            |
 | DELETE     | /api/scores/{userName}/{movieId}             | Delete a score record                    | JSON            |
+| GET        | /api/comments/{commentId}                    | Get a comments by id                     | JSON            |
+| GET        | /api/comments/movie/{movieId}                | Get all the comments of a movie          | JSON            |
+| POST       | /api/comments                                | Create a comment                         | JSON            |
+| DELETE     | /api/comments/{commentId}                    | Delete a comment                         | JSON            |
 

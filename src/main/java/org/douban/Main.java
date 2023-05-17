@@ -48,6 +48,8 @@ public class Main {
 
         app.post("/api/scores/{userName}/{movieId}/{score}", scoreController::createScore);
 
+        app.put("/api/scores/{userName}/{movieId}/{score}", scoreController::updateScore);
+
         app.start(7070);
     }
 }

@@ -21,4 +21,18 @@ public class ScoreDao {
             return score;
         }
     }
+
+    public Score updateScoreRecord(Score score) throws SQLException {
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("UPDATE scores SET score = ? WHERE user_name = ? AND " +
+                        "movie_id = ?;");
+        ) {
+            st.setInt(1, score.getScore());
+            st.setString(2, score.getUserName());
+            st.setInt(3, score.getMovieId());
+            st.executeUpdate();
+            return score;
+        }
+    }
 }

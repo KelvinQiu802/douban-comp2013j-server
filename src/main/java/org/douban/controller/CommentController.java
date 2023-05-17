@@ -30,4 +30,30 @@ public class CommentController {
             ctx.result("Internal Server Error").status(500);
         }
     }
+
+    public void commentByMovieId(Context ctx) {
+        try {
+            String movieIdStr = ctx.pathParam("movieId");
+            int movieId = Integer.parseInt(movieIdStr);
+            ctx.json(commentDao.getCommentByMovieId(movieId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input Number").status(400);
+        }
+    }
+
+    public void getCommentById(Context ctx){
+        try{
+            String commentIdStr=ctx.pathParam("commentId");
+            int commentId=Integer.parseInt(commentIdStr);
+            ctx.json(commentDao.getCommentById(commentId));
+        }catch (SQLException e) {
+            e.printStackTrace();
+            ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input Number").status(400);
+        }
+    }
 }

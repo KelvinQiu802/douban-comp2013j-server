@@ -3,10 +3,9 @@ package org.douban.dao;
 import org.douban.model.Comment;
 import org.douban.util.DBUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommentDao {
     public Comment createComment(Comment comment) throws SQLException {
@@ -24,6 +23,7 @@ public class CommentDao {
         }
     }
 
+
     public void deleteComment(int id) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
@@ -34,4 +34,47 @@ public class CommentDao {
         }
     }
 
+    public List<Comment> getCommentByMovieId(int movieId) throws SQLException {
+        List<Comment> comments = new ArrayList<>();
+        try (
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM comments WHERE movie_id = ?;");
+        ) {
+            st.setInt(1, movieId);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    comments.add(constructComment(rs));
+                }
+            }
+        }
+        return comments;
+    }
+
+    public Comment getCommentById(int id) throws SQLException{
+        try (
+                Connection conn=DBUtils.connectToDB();
+                PreparedStatement st=conn.prepareStatement("SELECT * FROM comments WHERE comment_id=?;");
+        ){
+            st.setInt(1,id);
+            ResultSet rs=st.executeQuery();
+            rs.next();
+            return constructComment(rs);
+        }
+    }
+
+    /***
+     * A helper method to create comment object.
+     * @param rs Result Set
+     * @return Comment Object
+     * @throws SQLException SQLException
+     */
+    private Comment constructComment(ResultSet rs) throws SQLException {
+        return new Comment(rs.getInt("comment_id"), rs.getString("user_name"),
+                rs.getInt("movie_id"), rs.getString("content"),
+                rs.getDate("time"));
+    }
 }
+
+
+
+

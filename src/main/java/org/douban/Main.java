@@ -54,10 +54,9 @@ public class Main {
 
         app.delete("/api/comments/{commentId}", commentController::deleteComment);
 
-        // app.get("/api/comments/{commentId}", commentController::);
+         app.get("/api/comments/{commentId}", commentController::getCommentById);
 
-        // app.get("/api/comments/movie/{movieId}", commentController::);
-
+         app.get("/api/comments/movie/{movieId}", commentController::commentByMovieId);
 
         app.start(7070);
     }

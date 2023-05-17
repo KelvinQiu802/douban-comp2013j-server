@@ -91,4 +91,5 @@ erDiagram
 | GET        | /api/scores/{movieId}                        | To get all the score records by movie id | JSON            |
 | POST       | /api/scores/{userName}/{movieId}/{score}     | Create a score record                    | JSON            |
 | PUT        | /api/scores/{userName}/{movieId}/{score}     | Update a score record                    | JSON            |
+| DELETE     | /api/scores/{userName}/{movieId}             | Delete a score record                    | JSON            |
 

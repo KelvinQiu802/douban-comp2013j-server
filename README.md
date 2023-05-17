@@ -31,7 +31,6 @@ erDiagram
 
 		Movies {
 			int movie_id PK
-			double score
 			string country
 			string intro
 			string movie_title
@@ -80,7 +79,6 @@ erDiagram
 | ---------- | -------------------------------------------- | ---------------------------------------- | --------------- |
 | GET        | /api/test                                    | To get top 10 movies in the db           | JSON            |
 | GET        | /api/movies/{id}                             | To retrieve movie by id in the db        | JSON            |
-| PUT        | /api/movies/{id}/{score}                     | To update movie score in the db          | JSON            |
 | GET        | /api/movies?page={page}&limit={limit}        | To get movies by page and limit          | JSON            |
 | GET        | /api/movies/count                            | To get total number of movies in the db  | JSON            |
 | POST       | /api/users                                   | Create an user in the db                 | JSON            |

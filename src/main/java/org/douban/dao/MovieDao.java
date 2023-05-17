@@ -55,18 +55,6 @@ public class MovieDao {
         return movies;
     }
 
-    public Movie updateMovieScoreById(int id, double score) throws SQLException {
-        try (
-                Connection conn = DBUtils.connectToDB();
-                PreparedStatement st = conn.prepareStatement("UPDATE movies SET score = ? WHERE movie_id = ?;");
-        ) {
-            st.setDouble(1, score);
-            st.setInt(2, id);
-            st.executeUpdate();
-            return getMovieById(id);
-        }
-    }
-
     public MovieCount getMovieCount() throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
@@ -92,7 +80,6 @@ public class MovieDao {
                 rs.getString("starring"), rs.getString("language"),
                 rs.getString("directedBy"), rs.getString("runtime"),
                 rs.getString("release_date"), rs.getString("genre"),
-                rs.getString("img_url"), rs.getString("abstract"),
-                rs.getDouble("score"));
+                rs.getString("img_url"), rs.getString("abstract"));
     }
 }

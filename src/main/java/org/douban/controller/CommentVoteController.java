@@ -58,9 +58,10 @@ public class CommentVoteController {
 
     public void deleteVote(Context ctx) {
         try {
+            String userName = ctx.pathParam("userName");
             String commentIdStr = ctx.pathParam("commentId");
             int commentId = Integer.parseInt(commentIdStr);
-            commentVoteDao.deleteVote(commentId);
+            commentVoteDao.deleteVote(userName, commentId);
             ctx.result("Success").status(200);
         } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);

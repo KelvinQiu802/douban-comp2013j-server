@@ -40,7 +40,8 @@ public class BookmarkDao {
     public Bookmark updateBookmark(Bookmark bookmark) throws SQLException {
         try (
                 Connection conn = DBUtils.connectToDB();
-                PreparedStatement st = conn.prepareStatement("UPDATE bookmarks SET status = ? where user_name = ? AND movie_id = ?;");
+                PreparedStatement st = conn.prepareStatement("UPDATE bookmarks SET status = ? WHERE user_name = ? AND" +
+                        " movie_id = ?;");
         ) {
             st.setString(1, String.valueOf(bookmark.getStatus()));
             st.setString(2, bookmark.getUserName());
@@ -54,7 +55,7 @@ public class BookmarkDao {
         List<Bookmark> bookmarks = new ArrayList<>();
         try (
                 Connection conn = DBUtils.connectToDB();
-                PreparedStatement st = conn.prepareStatement("SELECT * FROM bookmarks where user_name = ? ;");
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM bookmarks WHERE user_name = ? ;");
         ) {
             st.setString(1, userName);
             try (ResultSet rs = st.executeQuery()) {

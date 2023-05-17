@@ -2,7 +2,6 @@ package org.douban.controller;
 
 import io.javalin.http.Context;
 import org.douban.dao.CommentDao;
-import org.douban.model.Bookmark;
 import org.douban.model.Comment;
 
 import java.sql.SQLException;
@@ -23,11 +22,14 @@ public class CommentController {
 
     public void deleteComment(Context ctx) {
         try {
-            String commentId = ctx.pathParam("commentId");
-            int movieId = Integer.parseInt(commentId);
-            commentDao.deleteComment(movieId);
+            String commentIdStr = ctx.pathParam("commentId");
+            int commentId = Integer.parseInt(commentIdStr);
+            commentDao.deleteComment(commentId);
+            ctx.result("Success").status(200);
         } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
+        } catch (NumberFormatException e) {
+            ctx.result("Invalid Input").status(400);
         }
     }
 
@@ -37,20 +39,18 @@ public class CommentController {
             int movieId = Integer.parseInt(movieIdStr);
             ctx.json(commentDao.getCommentByMovieId(movieId));
         } catch (SQLException e) {
-            e.printStackTrace();
             ctx.result("Internal Server Error").status(500);
         } catch (NumberFormatException e) {
             ctx.result("Invalid Input Number").status(400);
         }
     }
 
-    public void getCommentById(Context ctx){
-        try{
-            String commentIdStr=ctx.pathParam("commentId");
-            int commentId=Integer.parseInt(commentIdStr);
+    public void getCommentById(Context ctx) {
+        try {
+            String commentIdStr = ctx.pathParam("commentId");
+            int commentId = Integer.parseInt(commentIdStr);
             ctx.json(commentDao.getCommentById(commentId));
-        }catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
             ctx.result("Internal Server Error").status(500);
         } catch (NumberFormatException e) {
             ctx.result("Invalid Input Number").status(400);

@@ -7,11 +7,11 @@ import org.douban.controller.*;
 public class Main {
     public static void main(String[] args) {
         Javalin app = Javalin.create(
-            config -> {
-                config.plugins.enableCors(cors -> {
-                    cors.add(CorsPluginConfig::anyHost);
-                });
-            }
+                config -> {
+                    config.plugins.enableCors(cors -> {
+                        cors.add(CorsPluginConfig::anyHost);
+                    });
+                }
         );
 
         MovieController movieController = new MovieController();
@@ -54,9 +54,9 @@ public class Main {
 
         app.delete("/api/comments/{commentId}", commentController::deleteComment);
 
-         app.get("/api/comments/{commentId}", commentController::getCommentById);
+        app.get("/api/comments/{commentId}", commentController::getCommentById);
 
-         app.get("/api/comments/movie/{movieId}", commentController::commentByMovieId);
+        app.get("/api/comments/movie/{movieId}", commentController::commentByMovieId);
 
         app.start(7070);
     }

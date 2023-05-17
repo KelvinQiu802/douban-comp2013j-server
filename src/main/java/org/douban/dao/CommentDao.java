@@ -45,20 +45,25 @@ public class CommentDao {
                 while (rs.next()) {
                     comments.add(constructComment(rs));
                 }
+                return comments;
             }
         }
-        return comments;
     }
 
-    public Comment getCommentById(int id) throws SQLException{
+    public Comment getCommentById(int id) throws SQLException {
         try (
-                Connection conn=DBUtils.connectToDB();
-                PreparedStatement st=conn.prepareStatement("SELECT * FROM comments WHERE comment_id=?;");
-        ){
-            st.setInt(1,id);
-            ResultSet rs=st.executeQuery();
-            rs.next();
-            return constructComment(rs);
+                Connection conn = DBUtils.connectToDB();
+                PreparedStatement st = conn.prepareStatement("SELECT * FROM comments WHERE comment_id = ?;");
+        ) {
+            st.setInt(1, id);
+            try (
+                    ResultSet rs = st.executeQuery();
+            ) {
+                if (rs.next()) {
+                    return constructComment(rs);
+                }
+            }
+            return null;
         }
     }
 

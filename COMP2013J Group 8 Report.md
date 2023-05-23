@@ -26,7 +26,7 @@ The project uses **a front-end and back-end separation architecture**, with the 
 
 The system architecture is mainly composed of four parts: **the client, the webpage, the backend server, and the database server.** The client accesses the webpage through a browser and interacts with it. The webpage exchanges data with the backend server through the HTTP protocol, and the backend server exchanges data information with the database server. The data information is then sent to the webpage, which renders new content and displays it on the client.
 
-<img src="https://imgbed.codingkelvin.fun/uPic/jyozr9.png" alt="System Architecture Diagram" style="zoom:50%;" />
+<img src="https://imgbed.codingkelvin.fun/uPic/WQXMGj.png" alt="System Architecture Diagram" style="zoom:50%;" />
 
 ## Tasks
 
@@ -314,10 +314,12 @@ Route (app)                                Size     First Load JS     Functions
   - Create front-end website.
   - Record a demonstration video.
 
-
 ## Self Assessing
 
-
+- **Code structure**: well-structured, with modules categorized and placed in different folders to implement different functions, making the structure clear and easy to understand.
+- **Clean Code:**  our whole team share a unified code format, presenting the code in the cleanest possible way.
+- **Team participation:** all members participate in the design process, with clear division of labor, and we hold at least one group meeting per week to discuss unresolved issues, push progress forward, and summarize our experience.
+- **Task completion:** we have all completed the goals of the assignment, and have designed the database, relationships, and web pages very well. We have made full use of the content learned in class and lab, such as pagination, login and registration, etc. All the required functions have been well implemented and presented.
 
 ## Project Timeline
 

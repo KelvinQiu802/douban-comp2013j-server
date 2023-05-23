@@ -4,7 +4,7 @@
 
 The information system implemented in the project is **A Movie Review Information System** modeled after [Douban](https://movie.douban.com/top250), which includes scores and reviews for the top 250 movies. Users can <u>sign up</u> and <u>log in</u> with an account to access the system, where they can <u>favorite</u>, <u>rate</u>, and <u>write comments</u> for the movies.
 
-The project uses **a front-end and back-end separation architecture**, with the back-end designed using ***RESTful APIs*** and the front-end using ***AJAX*** to asynchronously retrieve and display data on the page. Additionally, the project's database uses **MySQL** and has been deployed on a server, allowing for access to the data from anywhere via the internet.
+The project uses **a front-end and back-end separation architecture**, with the back-end designed using ***RESTful APIs*** and the front-end using ***AJAX*** to asynchronously retrieve and display data on the page. Additionally, the project's database uses **MySQL** and has been **deployed on a server**, allowing for access to the data from anywhere via the internet.
 
 ## Technology Stack Selection
 
@@ -285,11 +285,39 @@ Route (app)                                Size     First Load JS     Functions
 ## Team Member Contribution
 
 - **Jiawen Chen**
+  - Implement Movies APIs.
+  - Design and create Movies table.
+  - Scraping movies data from the Internet.
+  - Design front-end UI.
+  - Design the functionality of the website.
+  - Record a demonstration  video.
+
 - **Shaorou Tang**
+  - Implement Comments APIs.
+  - Design and create Comments table.
+  - Implement CommentVotes APIs.
+  - Design and create CommentVotes table.
+  - Design the functionality of the website.
+  - Record a demonstration video.
+
 - **Xinran Liu**
+  - Implement Bookmarks APIs.
+  - Design and create Bookmarks table.
+  - Implement Scores APIs.
+  - Design and create Scores table.
+  - Design the functionality of the website.
+  - Record a demonstration video.
+
 - **Yang Qiu**
+  - Implement Users APIs.
+  - Design and create Users table.
+  - Create front-end website.
+  - Record a demonstration video.
+
 
 ## Self Assessing
 
 
+
+## Project Timeline
 

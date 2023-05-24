@@ -13,6 +13,13 @@ $ git config core.hooksPath .githooks
 
 [🌈Conventional Commits😋](https://www.conventionalcommits.org/en/v1.0.0/)
 
+## Getting Started
+
+1. Create a database named `douban` and import the `douban.sql` file.
+2. Update the database password in `DBConfig.java`.
+3. Start the Javalin app.
+4. Build and start the [front-end website](https://github.com/KelvinQiu802/douban-comp2013j-client).
+
 ## Entities Relationship Diagram
 
 ```mermaid

@@ -320,6 +320,14 @@ Route (app)                                Size     First Load JS     Functions
 - **Clean Code:**  our whole team share a unified code format, presenting the code in the cleanest possible way.
 - **Team participation:** all members participate in the design process, with clear division of labor, and we hold at least one group meeting per week to discuss unresolved issues, push progress forward, and summarize our experience.
 - **Task completion:** we have all completed the goals of the assignment, and have designed the database, relationships, and web pages very well. We have made full use of the content learned in class and lab, such as pagination, login and registration, etc. All the required functions have been well implemented and presented.
+- **Normal Form:** All tables in the database are in third normal form.
 
 ## Project Timeline
 
+> The project is continuously being developed, and specific progress can be checked through the commit and pull request records in the GitHub repository.
+
+[Movies Data and SQL Repository](https://github.com/KelvinQiu802/movie-data-parser)
+
+[Back-end Server (Core Repository)](https://github.com/KelvinQiu802/douban-comp2013j-server)
+
+[Front-end Website Repository ](https://github.com/KelvinQiu802/douban-comp2013j-client)
